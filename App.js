@@ -23,11 +23,11 @@ app.get('/playerlist', (req, res) => {
 
 app.post('/playerlist', (req, res) => {
 	const name = req.body.name;
-	fs.readFile('./scores.json', 'utf-8')
+	fs.readFile('./players.json', 'utf-8')
 	.then((file) => {
 		const parsedFile = JSON.parse(file)
 		parsedFile.unshift({name})
-		fs.writeFile('./scores.json', JSON.stringify(parsedFile))
+		fs.writeFile('./players.json', JSON.stringify(parsedFile))
 		.then(() => {
 			res.json(parsedFile)
 		})
