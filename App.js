@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs').promises;
+const { send404Error } = require('./errors')
 
 const { PORT = 8080 } = process.env;
 
@@ -32,6 +33,8 @@ app.post('/playerlist', (req, res) => {
 		})
 	})
 })
+
+app.use('/*', send404Error);
 
 app.listen(PORT, () => {
 	console.log('listening');
